@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <title>Carbreezy</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Akronim);
+        @import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap');
+
+        /* Basic Reset */
+
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background-color: #000000;
+            /* Prevent horizontal scrollbar */
+        }
+
+        header {
+            background: linear-gradient(to right, #000000, rgb(247, 4, 4), #000000);
+            /* Gradient from black to red */
+            padding: 5px 10px;
+            /* Reduced padding */
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            margin: 0;
+            width: 120px;
+        }
+
+        .logo img {
+            height: 70px;
+            /* Reduced size */
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            margin: 0 8px;
+            /* Reduced margin */
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            /* Reduced font size */
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+
+        .auth-btn {
+            background-color: #eb0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            /* Reduced padding */
+            font-size: 12px;
+            /* Reduced font size */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .auth-btn.logout {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .auth-btn.logout:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #e50000;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #000000;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #412525;
+        }
+
+        .error-message {
+            color: rgb(247, 247, 247);
+            margin-bottom: 15px;
+        }
+
+        .welcome-user {
+            color: #fff;
+            font-size: 12px;
+            /* Reduced font size */
+            margin-left: auto;
+            margin-right: 10px;
+            /* Reduced margin */
+        }
+
+        .toggle-button {
+            background: #eb0000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+            /* Hidden by default */
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            width: 100%;
+            /* Full width to center text */
+        }
+
+        .text-overlay h1 {
+            font-size: 50px;
+            /* Adjusted size */
+            margin: 0;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .text-overlay h1 span {
+            display: block;
+            position: relative;
+            color: #fff;
+            text-shadow: 0 2px 5px #fb0606;
+            /* Reduced stroke for "Unleash" */
+            font-family: "Bona Nova SC", serif;
+        }
+
+        .text-overlay h1 .text2 {
+            color: red;
+            /* Red color for "Beast" text */
+            text-shadow: 1px 2px 5px #ffffff;
+            /* Reduced stroke for "Beast" */
+            font-family: "Bona Nova SC", serif;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .text-overlay .fade-in-animation {
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                position: relative;
+                padding: 5px;
+            }
+
+            .nav-links {
+                width: 100%;
+                text-align: center;
+                display: none;
+                /* Hide links by default on small screens */
+            }
+
+            .nav-links.show {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            .auth-btn {
+                margin-top: 10px;
+            }
+
+            .toggle-button {
+                display: block;
+                margin-top: 10px;
+            }
+
+            .logo img {
+                height: 40px;
+                /* Reduced size */
+                position: absolute;
+                top: 5px;
+                left: 10px;
+            }
+
+            .welcome-user {
+                text-align: center;
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .text-overlay h1 {
+                font-size: 24px;
+                /* Further reduced size */
+            }
+        }
+
+        @media (max-width: 320px) {
+            .navbar {
+                padding: 5px;
+            }
+
+            .logo img {
+                height: 35px;
+                /* Further reduced size */
+            }
+
+            .nav-links a {
+                font-size: 10px;
+                /* Further reduced font size */
+            }
+
+            .auth-btn {
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+
+            .text-overlay h1 {
+                font-size: 20px;
+                /* Further reduced size */
+            }
+        }
+
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Full viewport height */
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            /* Scale down the video */
+            min-width: 70%;
+            /* Adjusted width */
+            min-height: 70%;
+            /* Adjusted height */
+            width: auto;
+            height: auto;
+            z-index: -1;
+            /* Ensure video is behind text */
+        }
+
+
+
+        /* video ke niche jo container he */
+
+        /* video ke niche jo container he */
+        .custom-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: url(images/index/container.jpg);
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @keyframes borderColorFlow {
+            0% {
+                border-image-source: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
+            }
+
+            50% {
+                border-image-source: linear-gradient(45deg, cyan, blue, magenta, red, yellow, green);
+            }
+
+            100% {
+                border-image-source: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
+            }
+        }
+
+        .custom-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            border-image: linear-gradient(45deg, red, black, red);
+            border-image-slice: 1;
+            border-image-width: 8px;
+            animation: borderColorFlow 4s linear infinite;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .category-btn {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.clicked {
+            transform: scale(0.8);
+        }
+
+        .additional-buttons {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .additional-buttons button {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .additional-buttons button:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .additional-buttons button:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .additional-buttons button:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .additional-buttons button:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .additional-buttons button:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .filter-dropdown {
+            display: none;
+            /* Hide initially */
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+        }
+
+        .filter-dropdown select,
+        .price-filter input {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+            width: 100%;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 250px;
+            /* Fixed width for consistent size */
+            height: 250px;
+            /* Fixed height for consistent size */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            /* Fixed height for consistent image size */
+            object-fit: cover;
+            /* Ensures images fill the space without distortion */
+            border-radius: 10px;
+        }
+
+        .card .price {
+            font-size: 16px;
+            color: #ffffff;
+            margin: 10px 0;
+        }
+
+        .card .add-to-cart {
+            margin-top: auto;
+            background-color: #fd0808;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .card .add-to-cart:hover {
+            background-color: #ffffff;
+            color: red;
+        }
+
+        .input.min,
+        .input.max {
+            color: white;
+            background-color: rgb(70, 70, 69);
+        }
+
+        /* video ke niche jo container he khatam */
+
+        /* video ke niche jo container he oska modal */
+
+        /* Modal Background */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 0px;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #333;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 70%;
+            max-width: 400px;
+            position: relative;
+            color: white;
+        }
+
+        /* Close Button */
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .modal-close:hover {
+            background: #d62839;
+        }
+
+        /* Modal Header */
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            flex: 1;
+        }
+
+        /* Modal Image */
+        .modal-img {
+            width: 100%;
+            max-width: 350px;
+            /* Set a max-width for the image */
+            height: 250px;
+            /* Set a fixed height for the image */
+            object-fit: cover;
+            /* Ensures images fill the space without distortion */
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            /* Center the image and add margin */
+            display: block;
+        }
+
+        /* Modal Body */
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            font-size: 16px;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            text-align: right;
+        }
+
+        .buy-now-btn {
+            background-color: #f47c7c;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-now-btn:hover {
+            background-color: #e63946;
+        }
+
+        /* Media Queries */
+        @media (max-width: 480px) {
+            .card {
+                width: calc(50% - 30px);
+                height: auto;
+            }
+
+            .card img {
+                height: 120px;
+            }
+
+            .custom-container {
+                padding: 10px;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .category-btn {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+
+            .additional-buttons button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .card {
+                width: calc(100% - 30px);
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 5px;
+            }
+
+            .category-btn {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            .additional-buttons button {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+        }
+
+        /* video ke niche jo container he oska modal khatam*/
+
+        @import 'https://fonts.googleapis.com/css?family=Noto+Sans';
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* Container Styling */
+        .counter-container {
+            position: relative;
+            top: -140px;
+            border-radius: 10px;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: center;
+            margin: 20px auto;
+            background: url('/images/index/count.avif') no-repeat center center;
+            background-size: cover;
+        }
+
+        .counter-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .counter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .counter-container img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Counter Styling */
+        .counter-section i {
+            display: block;
+            margin: 0 0 10px;
+        }
+
+        .counter-section span.counter {
+            font-size: 40px;
+            color: #fff;
+            line-height: 60px;
+            display: block;
+            font-family: "Oswald", sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .counter-title {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .counter-icon {
+            top: 25px;
+            position: relative;
+        }
+
+        .counter-style2 .counter-title {
+            letter-spacing: 0.55px;
+            float: left;
+        }
+
+        .counter-style2 span.counter {
+            letter-spacing: 0.55px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .counter-style2 i {
+            float: right;
+            line-height: 26px;
+            margin: 0 10px 0 0;
+        }
+
+        .counter-subheadline span {
+            float: right;
+        }
+
+        .medium-icon {
+            font-size: 40px !important;
+            margin-bottom: 15px !important;
+        }
+
+        .container {
+            margin-top: 200px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .counter-section i {
+                font-size: 30px !important;
+            }
+
+            .counter-section span.counter {
+                font-size: 30px;
+            }
+
+            .counter-title {
+                font-size: 10px;
+            }
+
+            .counter-container {
+                padding: 20px;
+            }
+        }
+
+        /* Additional Styling */
+        .bottom-margin {
+            margin-bottom: 30px;
+        }
+
+        .bottom-margin-small {
+            margin-bottom: 20px;
+        }
+
+        .sm-margin-bottom-ten {
+            margin-bottom: 10px;
+        }
+
+        .xs-margin-bottom-ten {
+            margin-bottom: 10px;
+        }
+
+        /* counter khatam */
+
+        /* glowing text */
+        .fire {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 1000px;
+            height: 200px;
+            background-position: center center;
+            background-size: 400px 200px;
+            border-radius: 10px;
+            font-family: 'Akronim';
+            overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .fire:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .Blazing {
+            display: inline-block;
+            margin: 0;
+            color: rgb(255, 115, 0);
+            font-size: 150px;
+            line-height: 50px;
+            min-width: 50px;
+            outline: none;
+            vertical-align: middle;
+            text-shadow:
+                0 3px 20px red,
+                0 0 20px red,
+                0 0 10px rgb(255, 55, 0),
+                4px -5px 6px rgb(255, 98, 0),
+                -4px -10px 10px rgb(255, 77, 0),
+                0 -10px 30px rgb(255, 0, 0);
+            animation: 2s Blazing infinite alternate linear;
+        }
+
+        @keyframes Blazing {
+            0% {
+                text-shadow: 0 3px 20px red, 0 0 20px red,
+                    0 0 10px orange,
+                    0 0 0 yellow,
+                    0 0 5px yellow,
+                    -2px -5px 5px yellow,
+                    4px -10px 10px yellow;
+            }
+
+            25% {
+                text-shadow: 0 3px 20px red, 0 0 30px red,
+                    0 0 20px orange,
+                    0 0 5px yellow,
+                    -2px -5px 5px yellow,
+                    3px -10px 10px yellow,
+                    -4px -15px 20px yellow;
+            }
+
+            50% {
+                text-shadow: 0 3px 20px red, 0 0 20px red,
+                    0 -5px 10px orange,
+                    -2px -5px 5px yellow,
+                    3px -10px 10px yellow,
+                    -4px -15px 20px yellow,
+                    2px -20px 30px rgba(255, 255, 0, 0.5);
+            }
+
+            75% {
+                text-shadow: 0 3px 20px red, 0 0 20px red,
+                    0 -5px 10px orange,
+                    3px -5px 5px yellow,
+                    -4px -10px 10px yellow,
+                    2px -20px 30px rgba(255, 255, 0, 0.5),
+                    0px -25px 40px rgba(255, 255, 0, 0);
+            }
+
+            100% {
+                text-shadow: 0 3px 20px red, 0 0 20px red,
+                    0 0 10px orange,
+                    0 0 0 yellow,
+                    0 0 5px yellow,
+                    -2px -5px 5px yellow,
+                    4px -10px 10px yellow;
+            }
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 768px) {
+            .Blazing {
+                font-size: 100px;
+            }
+
+            .fire {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .Blazing {
+                font-size: 80px;
+                line-height: 40px;
+            }
+
+            .fire {
+                height: 130px;
+                background-size: 300px 130px;
+            }
+        }
+
+        @media (max-width: 320px) and (max-height: 513px) {
+            .Blazing {
+                font-size: 60px;
+                line-height: 30px;
+            }
+
+            .fire {
+                height: 100px;
+                background-size: 200px 100px;
+            }
+        }
+
+        /* glowing text finish */
+
+        /* Footer */
+        /* new footer */
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-section {
+            background: #151414;
+            position: relative;
+        }
+
+        .footer-cta {
+            border-bottom: 1px solid #373636;
+        }
+
+        .single-cta i {
+            color: #ff5e14;
+            font-size: 30px;
+            float: left;
+            margin-top: 8px;
+        }
+
+        .cta-text {
+            padding-left: 15px;
+            display: inline-block;
+        }
+
+        .cta-text h4 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .cta-text span {
+            color: #757575;
+            font-size: 15px;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-pattern img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 330px;
+            background-size: cover;
+            background-position: 100% 100%;
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo img {
+            max-width: 200px;
+        }
+
+        .footer-text p {
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #7e7e7e;
+            line-height: 28px;
+        }
+
+        .footer-social-icon span {
+            color: #fff;
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .footer-social-icon a {
+            color: #fff;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .footer-social-icon i {
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            line-height: 38px;
+            border-radius: 50%;
+        }
+
+        .facebook-bg {
+            background: #3B5998;
+        }
+
+        .twitter-bg {
+            background: #55ACEE;
+        }
+
+        .google-bg {
+            background: #DD4B39;
+        }
+
+        .footer-widget-heading h3 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .footer-widget-heading h3::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            height: 2px;
+            width: 50px;
+            background: #ff5e14;
+        }
+
+        .footer-widget ul li {
+            display: inline-block;
+            float: left;
+            width: 50%;
+            margin-bottom: 12px;
+        }
+
+        .footer-widget ul li a:hover {
+            color: #ff5e14;
+        }
+
+        .footer-widget ul li a {
+            color: #878787;
+            text-transform: capitalize;
+        }
+
+        .subscribe-form {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscribe-form input {
+            width: 100%;
+            padding: 14px 28px;
+            background: #2E2E2E;
+            border: 1px solid #2E2E2E;
+            color: #fff;
+        }
+
+        .subscribe-form button {
+            position: absolute;
+            right: 0;
+            background: #ff1414;
+            padding: 26px 20px;
+            border: 1px solid #000000;
+            top: 0px;
+
+
+        }
+
+        .subscribe-form button i {
+            color: #fff;
+            font-size: 22px;
+            transform: rotate(-6deg);
+        }
+
+        .copyright-area {
+            background: #202020;
+            padding: 25px 0;
+        }
+
+        .copyright-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #878787;
+        }
+
+        .copyright-text p a {
+            color: #ff1414;
+        }
+
+        .footer-menu li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .footer-menu li:hover a {
+            color: #ff1414;
+        }
+
+        .footer-menu li a {
+            font-size: 14px;
+            color: #878787;
+        }
+
+        @media (max-width: 767px) {
+            .footer-widget ul li {
+                width: 100%;
+                float: none;
+            }
+
+            .footer-cta .col-xl-4 {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .footer-cta .single-cta i {
+                font-size: 24px;
+            }
+
+            .cta-text h4 {
+                font-size: 18px;
+            }
+
+            .cta-text span {
+                font-size: 13px;
+            }
+
+            .footer-text p {
+                font-size: 12px;
+            }
+
+            .footer-social-icon span {
+                font-size: 18px;
+            }
+
+            .footer-social-icon a {
+                font-size: 14px;
+            }
+
+            .footer-widget-heading h3 {
+                font-size: 18px;
+            }
+
+            .footer-widget ul li {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
+            .footer-menu li {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .subscribe-form input {
+                padding: 10px;
+            }
+
+            .subscribe-form button {
+                padding: 30px;
+                font-size: 16px;
+            }
+        }
+
+        /* footer finish */
+    </style>
+</head>
+
+<body onload="displayUserName()">
+    <header>
+        <nav class="navbar">
+            <button class="toggle-button" id="toggleButton">&#9776;</button>
+            <div class="logo">
+                <img src="images/logo/carbreezy.png" alt="Carbreezy Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/service.html">Service</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/cart.html">ō͡≡о</a></li>
+            </ul>
+            <div class="welcome-user" id="welcomeUser">Welcome, Guest!</div>
+            <button class="auth-btn" id="authBtn">Register</button>
+        </nav>
+    </header>
+
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="/images/index/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="text-overlay">
+            <h1 class="fade-in-animation">
+                <span>Unleash</span> <span class="text2">The Beast</span>
+            </h1>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <input type="submit" value="Register">
+            </form>
+            <p class="error-message" id="errorMessage"></p>
+        </div>
+    </div>
+    <div class="custom-container">
+        <button class="category-btn" onclick="toggleButtons()">Category</button>
+        <div class="additional-buttons">
+            <button class="category-button" onclick="showCards(1)">Sports</button>
+            <button class="category-button" onclick="showCards(2)">Pickup</button>
+            <button class="category-button" onclick="showCards(3)">Sedan</button>
+            <button class="category-button" onclick="showCards(4)">SUV</button>
+            <button class="category-button" onclick="showCards(5)">Minivan</button>
+        </div>
+        <div class="filter-dropdown" id="filter-section">
+            <select id="filter-select" onchange="applyFilter()">
+                <option value="">Select Car Type</option>
+                <option value="new">New Car</option>
+                <option value="used">Used Car</option>
+                <option value="both">Both</option>
+            </select>
+            <br>
+            <label for="min-price">Min Price:</label>
+            <input class="input min" type="number" id="min-price" placeholder="Min Price" oninput="applyFilter()">
+            <label for="max-price">Max Price:</label>
+            <input class="input max" type="number" id="max-price" placeholder="Max Price" oninput="applyFilter()">
+        </div>
+        <div class="card-container" id="cards-container">
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-title">Product Title</h2>
+            </div>
+            <img id="modal-image" class="modal-img" src="" alt="Car Image">
+            <div class="modal-body">
+                <p id="modal-description" class="modal-description">Product Description</p>
+                <p id="modal-price" class="modal-price">Product Price</p>
+            </div>
+            <div class="modal-footer">
+                <button class="buy-now-btn" onclick="buyNow()">Buy Now</button>
+            </div>
+        </div>
+    </div>
+    <section class="wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+        <div class="container">
+            <div class="counter-container">
+                <div class="counter-content">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated" data-wow-duration="300ms" style="visibility: visible; animation-duration: 300ms; animation-name: fadeInUp;">
+                            <i class="fa fa-beer medium-icon"></i>
+                            <span id="anim-number-pizza" class="counter-number"></span>
+                            <span class="timer counter alt-font appear" data-to="980" data-speed="7000">2800</span>
+                            <p class="counter-title">Car Ordered</p>
+                        </div>
+                        <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated" data-wow-duration="600ms" style="visibility: visible; animation-duration: 600ms; animation-name: fadeInUp;">
+                            <i class="fa fa-heart medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="980" data-speed="7000">980</span>
+                            <span class="counter-title">Happy Clients</span>
+                        </div>
+                        <div class="col-md-3 col-sm-6 bottom-margin-small text-center counter-section wow fadeInUp xs-margin-bottom-ten animated" data-wow-duration="900ms" style="visibility: visible; animation-duration: 900ms; animation-name: fadeInUp;">
+                            <i class="fa fa-anchor medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="810" data-speed="7000">810</span>
+                            <span class="counter-title">Projects Completed</span>
+                        </div>
+                        <div class="col-md-3 col-sm-6 text-center counter-section wow fadeInUp animated" data-wow-duration="1200ms" style="visibility: visible; animation-duration: 1200ms; animation-name: fadeInUp;">
+                            <i class="fa fa-user medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="600" data-speed="7000">600</span>
+                            <span class="counter-title">Clients Served</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="dark fire">
+        <h1 class="Blazing" contenteditable="true">Car breezy</h1>
+    </div>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>Karachi,Pakistan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>03123456790</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>carbreezy@info.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="images/logo/carbreezy.png" class="img-fluid" alt="logo"></a>
+                            </div>
+                            <div class="footer-text">
+                                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec
+                                    tetur adipisicing
+                                    elit,Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="/index.html">Home</a></li>
+                                <li><a href="about.html">About us</a></li>
+                                <li><a href="/contact.html">Contact us</a></li>
+                                <li><a href="/service.html">services</a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Email Address">
+                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2024, All Right Reserved <a>Carbreezy</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="/index.html">Home</a></li>
+                                <li><a href="/contact.html">Contact</a></li>
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to display username and update button text
+        function displayUserName() {
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('welcomeUser').textContent = `Welcome, ${userName}!`;
+                document.getElementById('authBtn').textContent = 'Logout';
+                document.getElementById('authBtn').classList.add('logout');
+            }
+        }
+
+        // Function to open or close modal
+        document.getElementById('authBtn').onclick = function() {
+            if (this.textContent === 'Register') {
+                document.getElementById('registerModal').style.display = 'block';
+            } else if (this.textContent === 'Logout') {
+                localStorage.removeItem('userName');
+                document.getElementById('welcomeUser').textContent = 'Welcome, Guest!';
+                document.getElementById('authBtn').textContent = 'Register';
+                document.getElementById('authBtn').classList.remove('logout');
+            }
+        };
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('registerModal').style.display = 'none';
+        }
+
+        // Function to handle form submission
+        document.getElementById('registerForm').onsubmit = function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password === confirmPassword) {
+                localStorage.setItem('userName', firstName);
+                closeModal();
+                displayUserName();
+            } else {
+                document.getElementById('errorMessage').textContent = 'Passwords do not match.';
+            }
+        };
+
+        // Toggle navigation links on small screens
+        document.getElementById('toggleButton').onclick = function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <script>
+    const carImages = {
+        1: ['images/vehical/Sport car/Sport Car 1.jpeg', 'images/vehical/Sport car/Sport Car 2.jpeg', 'images/vehical/Sport car/Sport Car 3.jpeg', 'images/vehical/Sport car/Sport Car 4.jpeg', 'images/vehical/Sport car/Sport Car 5.jpeg', 'images/vehical/Sport car/Sport Car 6.jpeg', 'images/vehical/Sport car/Sport Car 7.jpeg', 'images/vehical/Sport car/Sport Car 8.jpeg', 'images/vehical/Sport car/Sport Car 9.jpeg', 'images/vehical/Sport car/Sport Car 10.jpeg'],
+        2: ['images/vehical/Pickup/pickup1.png', 'images/vehical/Pickup/pickup2.png', 'images/vehical/Pickup/pickup3.png', 'images/vehical/Pickup/pickup4.png', 'images/vehical/Pickup/pickup5.png', 'images/vehical/Pickup/pickup6.png', 'images/vehical/Pickup/pickup7.png', 'images/vehical/Pickup/pickup8.png', 'images/vehical/Pickup/pickup9.png', 'images/vehical/Pickup/pickup10.png'],
+        3: ['images/vehical/Sedan/sedan1.png', 'images/vehical/Sedan/sedan2.png', 'images/vehical/Sedan/sedan3.png', 'images/vehical/Sedan/sedan4.png', 'images/vehical/Sedan/sedan5.png', 'images/vehical/Sedan/sedan6.png', 'images/vehical/Sedan/sedan7.png', 'images/vehical/Sedan/sedan8.png', 'images/vehical/Sedan/sedan9.png', 'images/vehical/Sedan/sedan10.png'],
+        4: ['images/vehical/Suv/Suv1.jpg', 'images/vehical/Suv/Suv2.jpg', 'images/vehical/Suv/Suv3.jpg', 'images/vehical/Suv/Suv4.jpg', 'images/vehical/Suv/Suv5.jpg', 'images/vehical/Suv/Suv6.jpg', 'images/vehical/Suv/Suv7.jpg', 'images/vehical/Suv/Suv8.jpg', 'images/vehical/Suv/Suv9.jpg', 'images/vehical/Suv/Suv10.jpg'],
+        5: ['images/vehical/Minivan/minivan1.png', 'images/vehical/Minivan/minivan2.png', 'images/vehical/Minivan/minivan3.png', 'images/vehical/Minivan/minivan4.png', 'images/vehical/Minivan/minivan5.png', 'images/vehical/Minivan/minivan6.png', 'images/vehical/Minivan/minivan7.png', 'images/vehical/Minivan/minivan8.png', 'images/vehical/Minivan/minivan9.png', 'images/vehical/Minivan/minivan10.png']
+    };
+
+    const buttonPrices = {
+        1: ["$450000", "$340000", "$222000", "$100000", "$204000", "$750000", "$206000", "$327000", "$528000", "$429000"],
+        2: ["$35000", "$40000", "$39000", "$54000", "$47000", "$50000", "$36000", "$32000", "$41000", "$30000"],
+        3: ["$22000", "$17000", "$15000", "$28000", "$19000", "$24000", "$23500", "$20000", "$16700", "$19800"],
+        4: ["$68000", "$57000", "$73000", "$80500", "$72000", "$63000", "$91000", "$56500", "$80700", "$64000"],
+        5: ["$33000", "$29500", "$26700", "$37300", "$39000", "$28000", "$31000", "$27000", "$32000", "$30500"]
+    };
+
+    const sportCarDetails = {
+        1: { title: "Supercharged V8", description: "Unleash the roar of this high-performance beast on the track." },
+        2: { title: "Sleek Aerodynamic", description: "Designed for speed and precision, a masterpiece of engineering." },
+        3: { title: "Midnight Falcon", description: "A dark and mysterious car with an engine built for top speeds." },
+        4: { title: "Roadster GT", description: "Experience the open road with this stunning and powerful convertible." },
+        5: { title: "Lightning Bolt", description: "A futuristic electric sports car with instant torque and acceleration." },
+        6: { title: "Apex Predator", description: "Dominate the streets with this top-tier, high-end performance vehicle." },
+        7: { title: "Red Fury", description: "A classic design with a modern twist, perfect for the enthusiast." },
+        8: { title: "Silver Bullet", description: "An ultra-lightweight frame with unmatched handling and speed." },
+        9: { title: "Panther R", description: "Sleek and stealthy, this car delivers power without compromise." },
+        10: { title: "Velocity Z", description: "Pushes the boundaries of speed and luxury in every detail." }
+    };
+    
+    const pickupDetails = {
+        1: { title: "Ford F-150", description: "A rugged workhorse built for any job, big or small." },
+        2: { title: "Ram 1500", description: "Comfort and capability, with a powerful engine and a smooth ride." },
+        3: { title: "Chevrolet Silverado", description: "Reliable and durable, perfect for hauling and off-road adventures." },
+        4: { title: "Toyota Tacoma", description: "Compact and versatile, a go-to for off-road enthusiasts." },
+        5: { title: "GMC Sierra", description: "Premium features and professional-grade power for the discerning driver." },
+        6: { title: "Nissan Titan", description: "A full-size truck with a powerful V8 engine and impressive towing." },
+        7: { title: "Honda Ridgeline", description: "Unique and practical, offering the utility of a truck with a car-like ride." },
+        8: { title: "Rivian R1T", description: "The future of electric pickups, blending performance with eco-friendliness." },
+        9: { title: "Tesla Cybertruck", description: "A bold, futuristic design with unmatched durability and speed." },
+        10: { title: "Jeep Gladiator", description: "Combines the legendary off-road capability of Jeep with the utility of a truck bed." }
+    };
+
+    const sedanDetails = {
+        1: { title: "Honda Civic", description: "A classic choice, known for its fuel efficiency and reliability." },
+        2: { title: "Toyota Corolla", description: "Practical and affordable, the perfect car for everyday commuting." },
+        3: { title: "Hyundai Elantra", description: "Sleek and stylish, with a spacious interior and great value." },
+        4: { title: "Nissan Altima", description: "Comfortable and refined, offering a smooth ride and advanced features." },
+        5: { title: "Kia Forte", description: "Sporty and modern, with a great warranty and a fun driving experience." },
+        6: { title: "Subaru Legacy", description: "All-wheel drive for all-weather confidence, a safe and reliable option." },
+        7: { title: "Mazda 3", description: "A driver's car, blending premium feel with responsive handling." },
+        8: { title: "Volkswagen Jetta", description: "European styling and a comfortable interior at an accessible price." },
+        9: { title: "Tesla Model 3", description: "An all-electric sedan with incredible performance and technology." },
+        10: { title: "Chevrolet Malibu", description: "A mid-size sedan with a comfortable ride and a spacious cabin." }
+    };
+
+    const suvDetails = {
+        1: { title: "Honda CR-V", description: "A popular compact SUV known for its reliability and practicality." },
+        2: { title: "Toyota RAV4", description: "Versatile and efficient, a top choice for families and adventurers." },
+        3: { title: "Ford Explorer", description: "A classic full-size SUV with plenty of room and towing power." },
+        4: { title: "Jeep Grand Cherokee", description: "Luxury and rugged capability, perfect for on and off-road travel." },
+        5: { title: "Subaru Outback", description: "Combines the best of a wagon and an SUV with all-wheel drive." },
+        6: { title: "Hyundai Palisade", description: "A spacious and luxurious three-row SUV with a premium feel." },
+        7: { title: "Kia Sorento", description: "Stylish and well-equipped, offering great value in a mid-size package." },
+        8: { title: "Chevrolet Traverse", description: "A large SUV with a roomy interior and smooth handling." },
+        9: { title: "Tesla Model Y", description: "An all-electric SUV with fast acceleration and a minimalist interior." },
+        10: { title: "Mercedes-Benz GLE", description: "The pinnacle of luxury SUVs, with cutting-edge technology and comfort." }
+    };
+
+    const minivanDetails = {
+        1: { title: "Toyota Sienna", description: "A family favorite, now with available all-wheel drive and a hybrid engine." },
+        2: { title: "Honda Odyssey", description: "Known for its 'Magic Slide' seats and innovative family features." },
+        3: { title: "Chrysler Pacifica", description: "The modern minivan, offering hybrid options and Stow 'n Go seating." },
+        4: { title: "Kia Carnival", description: "A 'Limo for the Family' with stylish design and a spacious interior." },
+        5: { title: "Dodge Grand Caravan", description: "A classic and affordable minivan with a reputation for utility." },
+        6: { title: "Volkswagen ID. Buzz", description: "A retro-styled electric minivan that brings back classic design." },
+        7: { title: "Mercedes-Benz Metris", description: "A commercial-grade minivan perfect for business or a large family." },
+        8: { title: "Ford Transit Connect", description: "A compact van that's easy to maneuver and perfect for urban families." },
+        9: { title: "Nissan Quest", description: "A comfortable and stylish minivan with a focus on interior design." },
+        10: { title: "Ram ProMaster City", description: "A compact cargo van that can be customized for family use." }
+    };
+
+    const allCardDetails = {
+        1: sportCarDetails,
+        2: pickupDetails,
+        3: sedanDetails,
+        4: suvDetails,
+        5: minivanDetails
+    };
+
+    function toggleButtons() {
+        $('.category-btn').toggleClass('clicked');
+        $('.additional-buttons').slideToggle();
+        $('#filter-section').slideUp(); // Hide filter section when category button is clicked again
+        $('#cards-container').hide(); // Hide cards when category button is clicked again
+    }
+
+    function showCards(buttonNumber) {
+        const cardContainer = $('#cards-container');
+        cardContainer.empty();
+        const detailsToUse = allCardDetails[buttonNumber];
+
+        $('#filter-section').slideDown(); // Show filter section when a category button is clicked
+
+        for (let i = 1; i <= 10; i++) {
+            const image = carImages[buttonNumber][i - 1];
+            const updatedPrice = buttonPrices[buttonNumber][i - 1];
+            const title = detailsToUse[i] ? detailsToUse[i].title : 'Product Title';
+            const description = detailsToUse[i] ? detailsToUse[i].description : 'Product Description';
+            let type = i <= 5 ? 'new' : 'used';
+
+            const card = `<div class="card" data-type="${type}" data-price="${updatedPrice.replace('$', '').replace(/,/g, '')}" data-card-number="${i}" data-category="${buttonNumber}">
+                <img src="${image}" alt="Car Image ${i}">
+                <p class="price">${updatedPrice}</p>
+                <button class="add-to-cart">View</button>
+            </div>`;
+            cardContainer.append(card);
+        }
+        cardContainer.fadeIn(); // Show cards
+    }
+
+    function applyFilter() {
+        const minPrice = parseFloat($('#min-price').val()) || 0;
+        const maxPrice = parseFloat($('#max-price').val()) || Infinity;
+        const typeFilter = $('#filter-select').val();
+
+        $('.card').each(function() {
+            const price = parseFloat($(this).data('price'));
+            const type = $(this).data('type');
+
+            if ((typeFilter === '' || type === typeFilter || typeFilter === 'both') && (price >= minPrice && price <= maxPrice)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    $(document).on('click', '.add-to-cart', function() {
+        const card = $(this).closest('.card');
+        const cardNumber = card.data('card-number');
+        const categoryNumber = card.data('category');
+        const detailsToUse = allCardDetails[categoryNumber];
+
+        const imageSrc = card.find('img').attr('src');
+        const title = detailsToUse[cardNumber] ? detailsToUse[cardNumber].title : 'Product Title';
+        const description = detailsToUse[cardNumber] ? detailsToUse[cardNumber].description : 'Product Description';
+        const price = card.find('.price').text();
+
+        // Set modal content
+        $('#modal-image').attr('src', imageSrc);
+        $('#modal-title').text(title);
+        $('#modal-description').text(description);
+        $('#modal-price').text(price);
+
+        // Show the modal
+        $('#myModal').fadeIn();
+    });
+
+    // Close the modal
+    $('.modal-close').on('click', function() {
+        $('#myModal').fadeOut();
+    });
+
+    $(window).on('click', function(event) {
+        if ($(event.target).is('#myModal')) {
+            $('#myModal').fadeOut();
+        }
+    });
+
+    function buyNow() {
+        // Fetching product details from the modal
+        const productImage = $('#modal-image').attr('src');
+        const productTitle = $('#modal-title').text();
+        const productPrice = $('#modal-price').text();
+
+        // Create an object to store in localStorage
+        const cartItem = {
+            image: productImage,
+            name: productTitle,
+            price: productPrice,
+            quantity: 1
+        };
+
+        // Store the product in localStorage
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(cartItem);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        // Redirect to cart.html
+        window.location.href = 'cart.html';
+    }
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.counter').each(function() {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 4000,
+                easing: 'swing',
+                step: function(now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    });
+</script>

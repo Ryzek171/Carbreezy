@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .custom-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, rgb(0, 0, 0), rgb(55, 49, 49), rgb(138, 126, 126));
+            border-radius: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @keyframes borderColorFlow {
+            0% {
+                border-image-source: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
+            }
+
+            50% {
+                border-image-source: linear-gradient(45deg, cyan, blue, magenta, red, yellow, green);
+            }
+
+            100% {
+                border-image-source: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
+            }
+        }
+
+        .custom-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            border-image: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
+            border-image-slice: 1;
+            border-image-width: 5px;
+            animation: borderColorFlow 4s linear infinite;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .category-btn {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.clicked {
+            transform: scale(0.8);
+        }
+
+        .additional-buttons {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .additional-buttons button {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .additional-buttons button:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .additional-buttons button:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .additional-buttons button:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .additional-buttons button:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .additional-buttons button:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .filter-dropdown {
+            display: none;
+            /* Hide initially */
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+        }
+
+        .filter-dropdown select,
+        .price-filter input {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-image: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 0), rgb(255, 0, 0));
+            border-image-slice: 1;
+            border-image-width: 3px;
+            width: 100%;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: rgb(0, 0, 0);
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: calc(25% - 30px);
+            /* 4 cards per row with gaps */
+            box-sizing: border-box;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .card .price {
+            font-size: 16px;
+            color: #ffffff;
+            margin: 10px 0;
+        }
+
+        .card .add-to-cart {
+            margin-top: auto;
+            background-color: #fd0808;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card .add-to-cart:hover {
+            background-color: #ffffff;
+            color: red;
+        }
+        .input.min{
+            color: white;
+            background-color: rgb(70, 70, 69);
+        }
+        .input.max{
+            color: white;
+            background-color: rgb(70, 70, 69);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="custom-container">
+        <button class="category-btn" onclick="toggleButtons()">Category</button>
+        <div class="additional-buttons">
+            <button class="category-button" onclick="showCards(1)">Sport</button>
+            <button class="category-button" onclick="showCards(2)">Pickup</button>
+            <button class="category-button" onclick="showCards(3)">Sedan</button>
+            <button class="category-button" onclick="showCards(4)">Suv</button>
+            <button class="category-button" onclick="showCards(5)">Minivan</button>
+        </div>
+        <div class="filter-dropdown" id="filter-section">
+            <select id="filter-select" onchange="applyFilter()">
+                <option value="">Select Car Type</option>
+                <option value="new">New Car</option>
+                <option value="used">Used Car</option>
+                <option value="both">Both</option>
+            </select>
+            <br>
+            <label for="min-price">Min Price:</label>
+            <input class="input min" type="number" id="min-price" placeholder="Min Price" oninput="applyFilter()">
+            <label for="max-price">Max Price:</label>
+            <input  class="input max" type="number" id="max-price" placeholder="Max Price" oninput="applyFilter()">
+        </div>
+        <div class="card-container" id="cards-container">
+            <!-- Cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const carImages = {
+            1: [
+                'Sport car/Sport Car 1.jpeg', 'Sport car/Sport Car 2.jpeg', 'Sport car/Sport Car 3.jpeg', 'Sport car/Sport Car 4.jpeg', 'Sport car/Sport Car 5.jpeg',
+                'Sport car/Sport Car 6.jpeg', 'Sport car/Sport Car 7.jpeg', 'Sport car/Sport Car 8.jpeg', 'Sport car/Sport Car 9.jpeg', 'Sport car/Sport Car 10.jpeg'
+            ],
+            2: [
+                'button2_car1.jpg', 'button2_car2.jpg', 'button2_car3.jpg', 'button2_car4.jpg', 'button2_car5.jpg',
+                'button2_car6.jpg', 'button2_car7.jpg', 'button2_car8.jpg', 'button2_car9.jpg', 'button2_car10.jpg'
+            ],
+            3: [
+                'button3_car1.jpg', 'button3_car2.jpg', 'button3_car3.jpg', 'button3_car4.jpg', 'button3_car5.jpg',
+                'button3_car6.jpg', 'button3_car7.jpg', 'button3_car8.jpg', 'button3_car9.jpg', 'button3_car10.jpg'
+            ],
+            4: [
+                'button4_car1.jpg', 'button4_car2.jpg', 'button4_car3.jpg', 'button4_car4.jpg', 'button4_car5.jpg',
+                'button4_car6.jpg', 'button4_car7.jpg', 'button4_car8.jpg', 'button4_car9.jpg', 'button4_car10.jpg'
+            ],
+            5: [
+                'button5_car1.jpg', 'button5_car2.jpg', 'button5_car3.jpg', 'button5_car4.jpg', 'button5_car5.jpg',
+                'button5_car6.jpg', 'button5_car7.jpg', 'button5_car8.jpg', 'button5_car9.jpg', 'button5_car10.jpg'
+            ]
+        };
+
+        const buttonPrices = {
+            1: ["$20000", "$21000", "$22000", "$23000", "$24000", "$25000", "$26000", "$27000", "$28000", "$29000"],
+            2: ["$21000", "$22000", "$23000", "$24000", "$25000", "$26000", "$27000", "$28000", "$29000", "$30000"],
+            3: ["$22000", "$23000", "$24000", "$25000", "$26000", "$27000", "$28000", "$29000", "$30000", "$31000"],
+            4: ["$23000", "$24000", "$25000", "$26000", "$27000", "$28000", "$29000", "$30000", "$31000", "$32000"],
+            5: ["$24000", "$25000", "$26000", "$27000", "$28000", "$29000", "$30000", "$31000", "$32000", "$33000"]
+        };
+
+        function toggleButtons() {
+            $('.category-btn').toggleClass('clicked');
+            $('.additional-buttons').slideToggle();
+            $('#filter-section').slideUp(); // Hide filter section when category button is clicked again
+            $('#cards-container').hide(); // Hide cards when category button is clicked again
+        }
+
+        function showCards(buttonNumber) {
+            const cardContainer = $('#cards-container');
+            cardContainer.empty();
+
+            $('#filter-section').slideDown(); // Show filter section when a category button is clicked
+
+            let usedCount = 0;
+            let newCount = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const image = carImages[buttonNumber][i - 1];
+                const updatedPrice = buttonPrices[buttonNumber][i - 1];
+                let type = 'new';
+                if (i <= 5) {
+                    type = 'new';
+                } else {
+                    type = 'used';
+                }
+
+                if (type === 'new' && newCount < 5) {
+                    newCount++;
+                } else if (type === 'used' && usedCount < 5) {
+                    usedCount++;
+                } else {
+                    continue;
+                }
+
+                const card = `
+                    <div class="card" data-type="${type}" data-price="${updatedPrice.replace('$', '').replace(/,/g, '')}">
+                        <img src="${image}" alt="Car Image ${i}">
+                        <h3 style="color: white;">Car ${i}</h3>
+                        <p class="price">${updatedPrice}</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                `;
+                cardContainer.append(card);
+            }
+
+            cardContainer.show();
+        }
+
+        function applyFilter() {
+            const minPrice = parseFloat($('#min-price').val()) || 0;
+            const maxPrice = parseFloat($('#max-price').val()) || Infinity;
+            const typeFilter = $('#filter-select').val();
+
+            $('.card').each(function () {
+                const price = parseFloat($(this).data('price'));
+                const type = $(this).data('type');
+
+                if ((typeFilter === '' || type === typeFilter || typeFilter === 'both') && (price >= minPrice && price <= maxPrice)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

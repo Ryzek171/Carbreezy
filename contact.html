@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Carbreezy</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/contact/contact-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(to right, #000, #f00, #000);
+            color: #fff;
+            padding: 0.8rem;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center; /* Center align the navbar links */
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            left: 0.5rem; /* Position logo to the left */
+        }
+
+        .logo img {
+            height: 85px; /* Set the logo size */
+            width: auto;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 0.5rem; /* Reduced margin for small screens */
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem; /* Reduced font size */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000; /* Black color on hover */
+        }
+
+        .contact-form-section {
+            padding: 1rem;
+            max-width: 400px; /* Further reduced width */
+            margin: auto;
+            background: #000;
+            color: #fff;
+            border-radius: 8px;
+            opacity: 0.9; /* Slightly transparent background */
+            animation: fadeIn 1s ease-out; /* Animation for fading in */
+            height: 500px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.5s ease-out; /* Animation for sliding in */
+        }
+
+        .contact-form label {
+            margin: 0.3rem 0 0.1rem;
+            font-size: 0.8rem; /* Smaller font size */
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.4rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.8rem; /* Smaller font size */
+            transition: border-color 0.3s ease; /* Animation for border color change */
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #f00; /* Change border color on focus */
+        }
+
+        .contact-form button {
+            background-color: #f00; /* Red button background */
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem; /* Smaller font size */
+            transition: background-color 0.3s ease; /* Animation for button background color */
+        }
+
+        .contact-form button:hover {
+            background-color: #c00; /* Darker red on hover */
+        }
+
+   
+        /* Keyframes for Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 320px) {
+            .contact-form-section {
+                padding: 0.5rem;
+                max-width: 250px; /* Further reduced width for very small screens */
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.3rem;
+                font-size: 0.7rem; /* Further reduced font size */
+            }
+
+            .contact-form button {
+                padding: 0.4rem;
+                font-size: 0.7rem; /* Further reduced font size */
+            }
+
+            .logo img {
+                height: 50px; /* Smaller logo for very small screens */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center; /* Center align the nav links */
+            }
+
+            .nav-links li {
+                margin: 0.3rem 0; /* Reduced margin for small screens */
+            }
+        }
+
+         /* Footer */
+        /* new footer */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-section {
+  background: #151414;
+  position: relative;
+}
+.footer-cta {
+  border-bottom: 1px solid #373636;
+}
+.single-cta i {
+  color: #ff5e14;
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.cta-text h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.cta-text span {
+  color: #757575;
+  font-size: 15px;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-pattern img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 330px;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.footer-logo {
+  margin-bottom: 30px;
+}
+.footer-logo img {
+  max-width: 200px;
+}
+.footer-text p {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #7e7e7e;
+  line-height: 28px;
+}
+.footer-social-icon span {
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+.footer-social-icon a {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+}
+.facebook-bg {
+  background: #3B5998;
+}
+.twitter-bg {
+  background: #55ACEE;
+}
+.google-bg {
+  background: #DD4B39;
+}
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #ff5e14;
+}
+.footer-widget ul li {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover {
+  color: #ff5e14;
+}
+.footer-widget ul li a {
+  color: #878787;
+  text-transform: capitalize;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: 1px solid #2E2E2E;
+  color: #fff;
+}
+.subscribe-form button {
+  position: absolute;
+  right: 0;
+  background: #ff1414;
+  padding: 26px 20px;
+  border: 1px solid #000000;
+  top: 0px;
+  
+  
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
+}
+.copyright-area {
+  background: #202020;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+.copyright-text p a {
+  color: #ff1414;
+}
+.footer-menu li {
+  display: inline-block;
+  margin-left: 20px;
+}
+.footer-menu li:hover a {
+  color: #ff1414;
+}
+.footer-menu li a {
+  font-size: 14px;
+  color: #878787;
+}
+@media (max-width: 767px) {
+  .footer-widget ul li {
+      width: 100%;
+      float: none;
+  }
+  .footer-cta .col-xl-4 {
+      margin-bottom: 30px;
+  }
+}
+@media (max-width: 320px) {
+  .footer-cta .single-cta i {
+      font-size: 24px;
+  }
+  .cta-text h4 {
+      font-size: 18px;
+  }
+  .cta-text span {
+      font-size: 13px;
+  }
+  .footer-text p {
+      font-size: 12px;
+  }
+  .footer-social-icon span {
+      font-size: 18px;
+  }
+  .footer-social-icon a {
+      font-size: 14px;
+  }
+  .footer-widget-heading h3 {
+      font-size: 18px;
+  }
+  .footer-widget ul li {
+      width: 100%;
+      margin-bottom: 8px;
+  }
+  .footer-menu li {
+      display: block;
+      margin-bottom: 10px;
+  }
+  .subscribe-form input {
+      padding: 10px;
+  }
+  .subscribe-form button {
+      padding: 30px;
+      font-size: 16px;
+  }
+}
+/* footer finish */
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo/carbreezy.png" alt="Carbreezy Logo"> <!-- Replace with your logo image URL -->
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                   <li><a href="service.html">Service</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-form-section">
+            <h1>Contact Us</h1>
+            <form class="contact-form" id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" title="Name should only contain letters and spaces" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+ <!-- Footer -->
+ <footer class="footer-section">
+    <div class="container">
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="cta-text">
+                <h4>Find us</h4>
+                <span>Karachi,Pakistan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fas fa-phone"></i>
+              <div class="cta-text">
+                <h4>Call us</h4>
+                <span>03123456790</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="far fa-envelope-open"></i>
+              <div class="cta-text">
+                <h4>Mail us</h4>
+                <span>carbreezy@info.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-content pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 mb-50">
+            <div class="footer-widget">
+              <div class="footer-logo">
+                <a href="index.html"><img src="images/logo/carbreezy.png" class="img-fluid" alt="logo"></a>
+              </div>
+              <div class="footer-text">
+                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec
+                  tetur adipisicing
+                  elit,Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="footer-social-icon">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+            <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Useful Links</h3>
+              </div>
+              <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="/contact.html">Contact us</a></li>
+                <li><a href="/service.html">services</a></li>
+               
+             
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+            <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Subscribe</h3>
+              </div>
+              <div class="footer-text mb-25">
+                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+              </div>
+              <div class="subscribe-form">
+                <form action="#">
+                  <input type="text" placeholder="Email Address">
+                  <button><i class="fab fa-telegram-plane"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+            <div class="copyright-text">
+              <p>Copyright &copy; 2024, All Right Reserved <a>Carbreezy</a></p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+            <div class="footer-menu">
+              <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Footer finish -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Form validation logic if needed
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Regex validation for name and email
+            const nameRegex = /^[A-Za-z\s]+$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameRegex.test(name)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter a valid name (letters and spaces only).'
+                });
+            } else if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter a valid email address.'
+                });
+            } else {
+                // Show the thank you message after successful validation
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thank You!',
+                    text: 'Thanks for contacting us!',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Reset the form after showing the alert
+                    document.getElementById('contactForm').reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

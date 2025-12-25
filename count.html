@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Section</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+    <style>
+        /* Container Styling */
+        .counter-container {
+            position: relative;
+            border-radius: 10px;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: center;
+            margin: 20px auto;
+            background: url('count.avif') no-repeat center center;
+            background-size: cover;
+        }
+
+        .counter-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .counter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .counter-container img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Counter Styling */
+        .counter-section i {
+            display: block;
+            margin: 0 0 10px;
+        }
+        .counter-section span.counter {
+            font-size: 40px;
+            color: #fff;
+            line-height: 60px;
+            display: block;
+            font-family: "Oswald", sans-serif;
+            letter-spacing: 2px;
+        }
+        .counter-title {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .counter-icon {
+            top: 25px;
+            position: relative;
+        }
+        .counter-style2 .counter-title {
+            letter-spacing: 0.55px;
+            float: left;
+        }
+        .counter-style2 span.counter {
+            letter-spacing: 0.55px;
+            float: left;
+            margin-right: 10px;
+        }
+        .counter-style2 i {
+            float: right;
+            line-height: 26px;
+            margin: 0 10px 0 0;
+        }
+        .counter-subheadline span {
+            float: right;
+        }
+        .medium-icon {
+            font-size: 40px !important;
+            margin-bottom: 15px !important;
+        }
+        .container {
+            margin-top: 200px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .counter-section i {
+                font-size: 30px !important;
+            }
+            .counter-section span.counter {
+                font-size: 30px;
+            }
+            .counter-title {
+                font-size: 10px;
+            }
+            .counter-container {
+                padding: 20px;
+            }
+        }
+
+        /* Additional Styling */
+        .bottom-margin {
+            margin-bottom: 30px;
+        }
+        .bottom-margin-small {
+            margin-bottom: 20px;
+        }
+        .sm-margin-bottom-ten {
+            margin-bottom: 10px;
+        }
+        .xs-margin-bottom-ten {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+        <div class="container">
+            <div class="counter-container">
+                <!-- Optional Image -->
+                <div class="counter-content">
+                    <div class="row">
+                        <!-- Counter -->
+                        <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated" data-wow-duration="300ms" style="visibility: visible; animation-duration: 300ms; animation-name: fadeInUp;">
+                            <i class="fa fa-beer medium-icon"></i>
+                            <span id="anim-number-pizza" class="counter-number"></span>
+                            <span class="timer counter alt-font appear" data-to="980" data-speed="7000">2800</span>
+                            <p class="counter-title">Car Ordered</p>
+                        </div>
+                        <!-- End Counter -->
+
+                        <!-- Counter -->
+                        <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated" data-wow-duration="600ms" style="visibility: visible; animation-duration: 600ms; animation-name: fadeInUp;">
+                            <i class="fa fa-heart medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="980" data-speed="7000">980</span>
+                            <span class="counter-title">Happy Clients</span>
+                        </div>
+                        <!-- End Counter -->
+
+                        <!-- Counter -->
+                        <div class="col-md-3 col-sm-6 bottom-margin-small text-center counter-section wow fadeInUp xs-margin-bottom-ten animated" data-wow-duration="900ms" style="visibility: visible; animation-duration: 900ms; animation-name: fadeInUp;">
+                            <i class="fa fa-anchor medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="810" data-speed="7000">810</span>
+                            <span class="counter-title">Projects Completed</span>
+                        </div>
+                        <!-- End Counter -->
+
+                        <!-- Counter -->
+                        <div class="col-md-3 col-sm-6 text-center counter-section wow fadeInUp animated" data-wow-duration="1200ms" style="visibility: visible; animation-duration: 1200ms; animation-name: fadeInUp;">
+                            <i class="fa fa-user medium-icon"></i>
+                            <span class="timer counter alt-font appear" data-to="600" data-speed="7000">600</span>
+                            <span class="counter-title">Clients Served</span>
+                        </div>
+                        <!-- End Counter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter JavaScript -->
+    <script>
+        $(document).ready(function() {
+            $('.counter').each(function () {
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 4000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            }); 
+        });
+    </script>
+    <!-- Counter JavaScript End -->
+</body>
+</html>
