@@ -2420,9 +2420,32 @@ document.getElementById("eliteBtn").addEventListener("click", function () {
 });
 </script>
 <!-- sweet alert for request subscription start finish-->
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Sare lazy images select karo
+    const lazyImages = document.querySelectorAll("img.lazy");
+
+    // Intersection Observer banaye
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                const img = entry.target;
+                img.src = img.dataset.src;   // real image load karo
+                img.classList.remove("lazy"); // lazy class remove karo
+                observer.unobserve(img);      // observer stop karo
+            }
+        });
+    });
+
+    // Observe sab images
+    lazyImages.forEach(img => observer.observe(img));
+});
+</script>
+
         
     </body>
     </html>
+
 
 
 
