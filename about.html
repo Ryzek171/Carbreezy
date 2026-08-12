@@ -1,527 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
-    <title>About Us - Automotive Digital Market</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('images/About/about-background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            overflow-x: hidden;
-            color: #ffffff;
-        }
-
-
-        .navbar-custom {
-            background: linear-gradient(to right, black, red, black);
-            padding: 12px 20px;
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .navbar-logo {
-            text-align: left;
-        }
-
-        .navbar-logo img {
-            height: 60px;
-            width: auto;
-        }
-
-        .navbar-links {
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        .navbar-links a:hover {
-            color: #ffb3b3;
-            text-decoration: underline;
-        }
-
-        .grid-spacer {
-            /* This div helps with centering on larger screens */
-        }
-
-        @media (max-width: 768px) {
-            .navbar-custom {
-                display: flex;
-                flex-direction: column;
-                padding: 12px 10px;
-            }
-
-            .navbar-logo {
-                margin-bottom: 10px;
-                text-align: center;
-            }
-            
-            .navbar-links {
-                justify-content: center;
-            }
-
-            .navbar-links a {
-                font-size: 16px;
-                margin: 5px 10px;
-            }
-        }
-
-        /* About Section */
-        .content-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-        }
-
-        .about-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .about-header h1 {
-            font-size: 36px;
-            color: #fff;
-        }
-
-        .about-section {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .about-text {
-            flex: 1 1 600px;
-            padding: 20px;
-            color: #ddd;
-            font-size: 20px;
-            line-height: 1.8;
-        }
-
-        .about-image {
-            flex: 1 1 400px;
-            padding: 20px;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* Footer */
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .footer-section {
-            background: #151414;
-            position: relative;
-        }
-
-        .footer-cta {
-            border-bottom: 1px solid #373636;
-        }
-
-        .single-cta i {
-            color: #ff5e14;
-            font-size: 30px;
-            float: left;
-            margin-top: 8px;
-        }
-
-        .cta-text {
-            padding-left: 15px;
-            display: inline-block;
-        }
-
-        .cta-text h4 {
-            color: #fff;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .cta-text span {
-            color: #757575;
-            font-size: 15px;
-        }
-
-        .footer-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-logo img {
-            max-width: 200px;
-        }
-
-        .footer-text p {
-            margin-bottom: 14px;
-            font-size: 14px;
-            color: #7e7e7e;
-            line-height: 28px;
-        }
-
-        .footer-social-icon span {
-            color: #fff;
-            display: block;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 20px;
-        }
-
-        .footer-social-icon a {
-            color: #fff;
-            font-size: 16px;
-            margin-right: 15px;
-        }
-
-        .footer-social-icon i {
-            height: 40px;
-            width: 40px;
-            text-align: center;
-            line-height: 38px;
-            border-radius: 50%;
-        }
-
-        .facebook-bg {
-            background: #3B5998;
-        }
-
-        .twitter-bg {
-            background: #55ACEE;
-        }
-
-        .google-bg {
-            background: #DD4B39;
-        }
-
-        .footer-widget-heading h3 {
-            color: #fff;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .footer-widget-heading h3::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -15px;
-            height: 2px;
-            width: 50px;
-            background: #ff0000;
-        }
-
-        .footer-widget ul li {
-            display: inline-block;
-            float: left;
-            width: 50%;
-            margin-bottom: 12px;
-        }
-
-        .footer-widget ul li a:hover {
-            color: #ff5e14;
-        }
-
-        .footer-widget ul li a {
-            color: #878787;
-            text-transform: capitalize;
-        }
-
-        .subscribe-form {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .subscribe-form input {
-            width: 100%;
-            padding: 14px 28px;
-            background: #2E2E2E;
-            border: 1px solid #2E2E2E;
-            color: #fff;
-        }
-
-        .subscribe-form button {
-            position: absolute;
-            right: 0;
-            background: #ff1414;
-            padding: 26px 20px;
-            border: 1px solid #000000;
-            top: 0px;
-        }
-
-        .subscribe-form button i {
-            color: #fff;
-            font-size: 22px;
-            transform: rotate(-6deg);
-        }
-
-        .copyright-area {
-            background: #202020;
-            padding: 25px 0;
-        }
-
-        .copyright-text p {
-            margin: 0;
-            font-size: 14px;
-            color: #878787;
-        }
-
-        .copyright-text p a {
-            color: #ff1414;
-        }
-
-        .footer-menu li {
-            display: inline-block;
-            margin-left: 20px;
-        }
-
-        .footer-menu li:hover a {
-            color: #ff1414;
-        }
-
-        .footer-menu li a {
-            font-size: 14px;
-            color: #878787;
-        }
-
-        /*  Mobile Footer */
-        @media (max-width: 767px) {
-            .footer-widget ul li {
-                width: 100%;
-                float: none;
-            }
-
-            .footer-cta .col-xl-4 {
-                margin-bottom: 30px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .footer-cta .single-cta i {
-                font-size: 24px;
-            }
-
-            .cta-text h4 {
-                font-size: 18px;
-            }
-
-            .cta-text span {
-                font-size: 13px;
-            }
-
-            .footer-text p {
-                font-size: 12px;
-            }
-
-            .footer-social-icon span {
-                font-size: 18px;
-            }
-
-            .footer-widget-heading h3 {
-                font-size: 18px;
-            }
-
-            .subscribe-form input {
-                padding: 10px;
-            }
-
-            .subscribe-form button {
-                padding: 30px;
-                font-size: 16px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Carbreezy</title>
+<meta name="description" content="Learn how Carbreezy is reshaping the automotive digital market — verified fleets, data-driven matching, and a smoother way to rent or buy a car.">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div class="navbar-custom">
-        <div class="navbar-logo">
-            <a href="index.html">
-                <img src="images/logo/carbreezy.png" alt="Logo">
-            </a>
-        </div>
-        <div class="navbar-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="service.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="grid-spacer"></div>
+<!-- ============ NAVBAR ============ -->
+<header class="cbz-nav">
+  <div class="cbz-nav-inner">
+    <a href="index.html" class="cbz-logo">
+      <img src="images/logo/carbreezy.png" alt="Carbreezy logo">
+      Carbreezy
+    </a>
+    <nav class="cbz-nav-links">
+      <a href="index.html">Home</a>
+      <a href="service.html">Service</a>
+      <a href="about.html" class="is-active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="cbz-nav-actions">
+      <div data-auth-slot></div>
+      <button class="btn-icon cbz-cart-btn" data-cart-open aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cbz-cart-count" style="display:none;">0</span>
+      </button>
+      <div class="cbz-burger" id="cbzBurger"><span></span><span></span><span></span></div>
     </div>
+  </div>
+</header>
 
-    <div class="content-container">
-        <div class="about-header">
-            <h1>About Us</h1>
-        </div>
-        <div class="about-content">
-            <div class="about-section">
-                <div class="about-text">
-                    <p>The automotive digital market is a rapidly evolving landscape that integrates technology and innovation to transform the way vehicles are marketed, sold, and serviced. With advancements in digital platforms, the automotive industry has seen a significant shift from traditional methods to more modern, tech-driven approaches.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/About/about1.jpg" alt="Automotive Digital Market">
-                </div>
-            </div>
+<div class="cbz-mobile-panel" id="cbzMobilePanel">
+  <a href="index.html">Home</a>
+  <a href="service.html">Service</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-            <div class="about-section">
-                <div class="about-text">
-                    <p>At its core, the automotive digital market encompasses various digital channels and technologies, including websites, social media, mobile apps, and online marketplaces. These platforms enable automakers, dealers, and consumers to interact in more efficient and effective ways, streamlining the car-buying process and enhancing the overall customer experience.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/About/about2.jpg" alt="Digital Channels">
-                </div>
-            </div>
+<!-- ============ PAGE HERO ============ -->
+<section class="hero" style="min-height:60vh;">
+  <div class="hero-media">
+    <img src="images/About/about-background.jpg" alt="Carbreezy showroom">
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">About Carbreezy</span>
+    <h1 class="hero-title" style="font-size:clamp(40px,7vw,88px);">
+      <span class="line"><span>The Road To</span></span>
+      <span class="line"><span>A Smarter Drive.</span></span>
+    </h1>
+  </div>
+</section>
 
-            <div class="about-section">
-                <div class="about-text">
-                    <p>One of the key components of the automotive digital market is the use of data and analytics. By leveraging data from various sources, including consumer behavior, market trends, and vehicle performance, companies can make more informed decisions. This data-driven approach allows for personalized marketing, targeted advertising, and improved inventory management, ultimately leading to increased sales and customer satisfaction.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/vehical/Sport car/Sport Car 7.jpeg" alt="Data Analytics">
-                </div>
-            </div>
-        </div>
+<div class="speed-stripe"></div>
+
+<!-- ============ STORY ============ -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="gap:64px;align-items:center;">
+      <div class="reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="section-title" style="font-size:clamp(30px,4vw,44px);margin-top:14px;">Reshaping The Automotive Digital Market</h2>
+        <p style="margin-top:20px;font-size:16px;">The automotive world is shifting fast — from dealership lots to digital marketplaces. Carbreezy was built at that intersection: a platform where technology and trust move the industry forward together.</p>
+        <p style="margin-top:16px;font-size:16px;">We bring automakers, dealers, and drivers onto one platform — websites, mobile, and marketplace tools that make the car-buying and renting process faster, clearer, and genuinely enjoyable.</p>
+      </div>
+      <div class="reveal card" style="padding:0;">
+        <img src="images/About/about1.jpg" alt="Carbreezy fleet" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);">
+      </div>
     </div>
+  </div>
+</section>
 
-       <footer class="footer-section">
-        <div class="container">
-            <div class="footer-cta pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-map-marker-alt" style="color: red;"></i>
-                            <div class="cta-text">
-                                <h4 style="color: white;">Find us</h4>
-                                <span style="color: white;">Karachi,Pakistan</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-phone" style="color: red;"></i>
-                            <div class="cta-text">
-                                <h4 style="color: white;">Call us</h4>
-                                <span style="color: white;">03123456790</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="far fa-envelope-open" style="color: red;"></i>
-                            <div class="cta-text">
-                                <h4 style="color: white;">Mail us</h4>
-                                <span style="color: white;">carbreezy@info.com</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-content pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="images/logo/carbreezy.png" class="img-fluid" alt="logo"></a>
-                            </div>
-                            <div class="footer-text">
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec
-                                    tetur adipisicing
-                                    elit,Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div class="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                        <div class="footer-widget" >
-                            <div class="footer-widget-heading" style="color: red;">
-                                <h3>Useful Links</h3>
-                            </div>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
-                                <li><a href="service.html">services</a></li>
+<!-- ============ DATA-DRIVEN APPROACH ============ -->
+<section class="section" style="background:var(--cbz-surface);">
+  <div class="container">
+    <div class="grid grid-2" style="gap:64px;align-items:center;">
+      <div class="reveal card" style="padding:0;order:2;">
+        <img src="images/About/about2.jpg" alt="Data driven matching" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);">
+      </div>
+      <div class="reveal" style="order:1;">
+        <span class="eyebrow">How We Work</span>
+        <h2 class="section-title" style="font-size:clamp(30px,4vw,44px);margin-top:14px;">Powered By Data, Built On Trust</h2>
+        <p style="margin-top:20px;font-size:16px;">Every recommendation on Carbreezy is shaped by real data — driving patterns, market trends, and vehicle performance — so you see options that actually fit you, not just what's available.</p>
+        <ul style="margin-top:24px;display:flex;flex-direction:column;gap:16px;">
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span class="text-red mono" style="font-size:14px;">01</span><span>Personalized matching based on your budget and usage</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span class="text-red mono" style="font-size:14px;">02</span><span>Real-time inventory across every category</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span class="text-red mono" style="font-size:14px;">03</span><span>Transparent pricing, no hidden fees</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="speed-stripe"></div>
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Subscribe</h3>
-                            </div>
-                            <div class="footer-text mb-25">
-                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2024, All Right Reserved <a>Carbreezy</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                              
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+<!-- ============ TEAM VALUES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">What Drives Us</span>
+        <h2 class="section-title">Our Values</h2>
+      </div>
+    </div>
+    <div class="grid grid-3 reveal-stagger">
+      <div class="card reveal" style="padding:32px;">
+        <div class="mono text-red" style="font-size:13px;margin-bottom:12px;">01</div>
+        <h3 style="font-family:var(--font-body);text-transform:none;font-size:20px;margin-bottom:10px;">Transparency</h3>
+        <p>Clear pricing, verified listings, and honest information — every single time.</p>
+      </div>
+      <div class="card reveal" style="padding:32px;">
+        <div class="mono text-red" style="font-size:13px;margin-bottom:12px;">02</div>
+        <h3 style="font-family:var(--font-body);text-transform:none;font-size:20px;margin-bottom:10px;">Innovation</h3>
+        <p>We keep pushing our platform forward with the tech the industry deserves.</p>
+      </div>
+      <div class="card reveal" style="padding:32px;">
+        <div class="mono text-red" style="font-size:13px;margin-bottom:12px;">03</div>
+        <h3 style="font-family:var(--font-body);text-transform:none;font-size:20px;margin-bottom:10px;">Customer First</h3>
+        <p>Every decision we make starts with one question — does this make the drive better?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION / CONTACT STRIP ============ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="card" style="padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+      <div>
+        <span class="eyebrow">Find Us</span>
+        <h3 style="font-size:28px;margin-top:12px;font-family:var(--font-display);">Karachi, Pakistan</h3>
+        <p class="mono" style="margin-top:8px;">carbreezy@info.com</p>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="cbz-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="cbz-logo" style="margin-bottom:16px;"><img src="images/logo/carbreezy.png" alt="Carbreezy logo"> Carbreezy</div>
+        <p>Pakistan's modern marketplace for renting and buying vehicles — sedans to sport cars, all in one place.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="index.html">Home</a>
+        <a href="service.html">Service</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="index.html#fleet">Sedans</a>
+        <a href="index.html#fleet">SUVs</a>
+        <a href="index.html#fleet">Sport Cars</a>
+        <a href="index.html#fleet">Pickups</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <p>support@carbreezy.com</p>
+        <p>+92 300 0000000</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Carbreezy. All rights reserved.</span>
+      <span>Made for the road.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ AUTH MODAL (shared across pages) ============ -->
+<div class="cbz-modal-overlay" id="cbzAuthModal">
+  <div class="cbz-modal">
+    <button class="cbz-modal-close" data-modal-close="cbzAuthModal">✕</button>
+    <div class="cbz-auth-pane" id="paneLogin">
+      <h3 class="cbz-modal-title">Welcome Back</h3>
+      <p class="cbz-modal-sub">Log in to manage your bookings.</p>
+      <form id="loginForm">
+        <div class="field"><label>Email</label><input type="email" name="email" required></div>
+        <div class="field"><label>Password</label><input type="password" name="password" required></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Log In</button>
+      </form>
+      <div class="cbz-modal-switch">New here? <a href="#" data-auth-switch="paneRegister">Create an account</a></div>
+    </div>
+    <div class="cbz-auth-pane" id="paneRegister" style="display:none;">
+      <h3 class="cbz-modal-title">Join Carbreezy</h3>
+      <p class="cbz-modal-sub">Create your account in seconds.</p>
+      <form id="registerForm">
+        <div class="field"><label>Full Name</label><input type="text" name="name" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email" required></div>
+        <div class="field"><label>Password</label><input type="password" name="password" minlength="6" required></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Create Account</button>
+      </form>
+      <div class="cbz-modal-switch">Already have an account? <a href="#" data-auth-switch="paneLogin">Log in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER (shared across pages) ============ -->
+<div class="cbz-cart-drawer">
+  <div class="cbz-cart-drawer-head">
+    <h3 style="font-size:22px;">Your Cart</h3>
+    <button class="btn-icon" data-cart-close aria-label="Close cart">✕</button>
+  </div>
+  <div class="cbz-cart-items"></div>
+  <div class="cbz-cart-drawer-foot"></div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  document.querySelector('.cbz-burger').addEventListener('click', function() {
+    document.getElementById('cbzMobilePanel').classList.toggle('is-open');
+  });
+</script>
 </body>
-
 </html>
-
-
-
-
-
