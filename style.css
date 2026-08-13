@@ -1012,3 +1012,123 @@ p { margin: 0; line-height: 1.6; color: var(--cbz-chrome); }
   .section-head { flex-direction: column; align-items: flex-start; }
   :root { --sp-9: 64px; }
 }
+
+/* ==========================================================================
+   RESPONSIVE ENHANCEMENTS — append to end of style.css
+   ========================================================================== */
+
+/* Fixed navbar ke neeche anchor links (#fleet) sahi jagah scroll hon */
+[id] { scroll-margin-top: var(--nav-height); }
+
+/* No tap-flash on mobile browsers */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Base fluid type scale so text never feels cramped or oversized */
+body { font-size: clamp(15px, 1.4vw, 16px); }
+
+/* ---------- Large tablets / small laptops ---------- */
+@media (max-width: 1180px) {
+  .container { padding: 0 var(--sp-4); }
+  .footer-grid { gap: var(--sp-5); }
+}
+
+/* ---------- Tablets (portrait) ---------- */
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .stat-strip { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2n) { border-right: none; }
+  .hero-title { font-size: clamp(40px, 8vw, 88px); }
+  .cart.html .grid[style*="2fr"] { grid-template-columns: 1fr !important; }
+}
+
+/* ---------- Mobile (large) ---------- */
+@media (max-width: 768px) {
+  :root { --nav-height: 66px; }
+
+  .cbz-nav-inner { padding: 0 var(--sp-4); }
+  .cbz-logo { font-size: 21px; }
+  .cbz-logo img { height: 30px; }
+
+  .hero { min-height: 92vh; }
+  .hero-content { padding-top: calc(var(--nav-height) + var(--sp-4)); }
+  .hero-title { font-size: clamp(36px, 11vw, 64px); }
+  .hero-sub { font-size: 15px; max-width: 100%; }
+  .hero-cta { width: 100%; }
+  .hero-cta .btn { flex: 1; }
+
+  .stat-strip { grid-template-columns: repeat(2, 1fr); margin-top: var(--sp-7); }
+  .stat-item { padding: var(--sp-4); }
+  .stat-num { font-size: 22px; }
+
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .section-title { font-size: clamp(28px, 8vw, 40px); }
+  .section-head { gap: var(--sp-3); margin-bottom: var(--sp-5); }
+
+  .filter-row { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .filter-pill { flex-shrink: 0; }
+
+  .vehicle-name { font-size: 20px; }
+  .vehicle-specs { flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); }
+
+  .card[style*="padding:64px"] { padding: 40px 24px !important; }
+  .card[style*="display:flex"][style*="space-between"] { flex-direction: column; text-align: center; }
+
+  .cbz-modal { padding: var(--sp-5); max-width: 92vw; }
+  .cbz-modal-title { font-size: 26px; }
+
+  .cbz-cart-drawer { width: 100%; }
+
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* about.html / any 2-col section with inline order should stack cleanly */
+  [style*="order:1"], [style*="order:2"] { order: 0 !important; }
+}
+
+/* ---------- Mobile (small) ---------- */
+@media (max-width: 480px) {
+  .container { padding: 0 var(--sp-3); }
+
+  .cbz-nav-actions { gap: var(--sp-2); }
+  .btn-icon { width: 38px; height: 38px; }
+
+  .hero-title { font-size: clamp(32px, 12vw, 48px); }
+  .eyebrow { font-size: 11px; }
+
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 19px; }
+  .stat-label { font-size: 9px; }
+
+  .btn { padding: 13px 22px; font-size: 13px; }
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { width: 100%; }
+
+  .vehicle-body { padding: var(--sp-4); }
+  .vehicle-footer { flex-wrap: wrap; gap: var(--sp-3); }
+  .vehicle-footer .btn { width: 100%; }
+
+  .card[style*="padding:32px"] { padding: 22px !important; }
+  .card[style*="padding:40px"] { padding: 24px !important; }
+  .card[style*="padding:48px"] { padding: 24px !important; }
+
+  .cbz-mobile-panel a { font-size: 26px; }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 360px) {
+  .hero-title { font-size: 30px; }
+  .section-title { font-size: 26px; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Landscape phones (short height) ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: 120vh; }
+  .hero-scroll-cue { display: none; }
+}
+
+/* ---------- Large desktop / ultra-wide ---------- */
+@media (min-width: 1600px) {
+  .container { max-width: 1440px; }
+  .hero-title { font-size: clamp(80px, 8vw, 140px); }
+}
