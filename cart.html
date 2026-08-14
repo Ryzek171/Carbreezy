@@ -125,8 +125,14 @@
       <h3 class="cbz-modal-title">Welcome Back</h3>
       <p class="cbz-modal-sub">Log in to manage your bookings.</p>
       <form id="loginForm">
-        <div class="field"><label>Email</label><input type="email" name="email" required></div>
-        <div class="field"><label>Password</label><input type="password" name="password" required></div>
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+        </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Log In</button>
       </form>
       <div class="cbz-modal-switch">New here? <a href="#" data-auth-switch="paneRegister">Create an account</a></div>
@@ -135,9 +141,18 @@
       <h3 class="cbz-modal-title">Join Carbreezy</h3>
       <p class="cbz-modal-sub">Create your account in seconds.</p>
       <form id="registerForm">
-        <div class="field"><label>Full Name</label><input type="text" name="name" required></div>
-        <div class="field"><label>Email</label><input type="email" name="email" required></div>
-        <div class="field"><label>Password</label><input type="password" name="password" minlength="6" required></div>
+        <div class="field">
+          <label for="registerName">Full Name</label>
+          <input type="text" id="registerName" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" name="password" autocomplete="new-password" minlength="6" required>
+        </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Create Account</button>
       </form>
       <div class="cbz-modal-switch">Already have an account? <a href="#" data-auth-switch="paneLogin">Log in</a></div>
